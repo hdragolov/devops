@@ -2,7 +2,8 @@
 # Installer script for terraform
 TMP_DIR='/tmp/terraform'
 ZIP_FILE='terraform.zip'
-SOURCE='https://releases.hashicorp.com/terraform/0.7.9/terraform_0.7.9_linux_amd64.zip'
+VERSION='0.7.10'
+SOURCE="https://releases.hashicorp.com/terraform/${VERSION}/terraform_${VERSION}_linux_amd64.zip"
 
 echo -e "\n### Pulling terraform pkg zip ###\n"
 mkdir "${TMP_DIR}" && cd "${TMP_DIR}"

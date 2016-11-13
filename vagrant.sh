@@ -1,20 +1,14 @@
-#!/bin/bsh
+#!/bin/bash
+source ./common.sh
 # Installger script for vagrant
 
-DIST=''
-
-# maybe going to a separate function for global usage
-if [ -f /etc/redhat-release ]; then
-    DIST='rhel'
-elif [ -f /etc/debian_version ]; then
-    DIST='debian'
-fi
+dist=$(get_dist)
+vagrant_ver='1.8.7'
 
 # Install based on Linux distribution
-if [ "${DIST}" == 'rhel' ]; then
-    rpm -ivh https://releases.hashicorp.com/vagrant/1.8.7/vagrant_1.8.7_x86_64.rpm
-    yum -y install vagrant_1.8.7_x86_64.rpm
-elif [ "${DIST}" == 'debian' ]; then
-    wget https://releases.hashicorp.com/vagrant/1.8.7/vagrant_1.8.7_x86_64.deb
-    dpkg -i vagrant_1.8.7_x86_64.rpm
+if [ "${dist}" == 'rhel' ]; then
+    rpm -ivh "https://releases.hashicorp.com/vagrant/${vagrant_ver}/vagrant_1.8.7_x86_64.rpm"
+elif [ "${dist}" == 'debian' ]; then
+    wget "https://releases.hashicorp.com/vagrant/${vagrant_ver}/vagrant_${vagrant_ver}_x86_64.deb"
+    dpkg -i "vagrant_${vagrant_ver}_x86_64.rpm"
 fi
